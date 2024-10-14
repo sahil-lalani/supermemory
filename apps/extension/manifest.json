@@ -1,28 +1,37 @@
 {
-	"manifest_version": 3,
-	"$schema": "https://json.schemastore.org/chrome-manifest",
-	"version": "2.63.71",
-	"name": "supermemory",
-	"description": "An extension for https://supermemory.ai - an AI hub for all your bookmarks.",
-	"background": {
-		"service_worker": "./background.ts"
-	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["./content/content.tsx"]
-		}
-	],
-	"icons": {
-		"16": "images/icon/icon_16.png",
-		"48": "images/icon/icon_48.png"
-	},
-	"web_accessible_resources": [
-		{
-			"resources": ["public/*"],
-			"matches": ["<all_urls>"]
-		}
-	],
-	"permissions": ["webRequest", "storage", "contextMenus"],
-	"host_permissions": ["<all_urls>"]
+  "manifest_version": 3,
+  "name": "Supermemory",
+  "version": "1.0",
+  "description": "Supermemory helps you import all your bookmarks into one place.",
+  "permissions": [
+    "scripting",
+    "downloads",
+    "storage",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "externally_connectable": {
+    "matches": [
+      "http://localhost:5173/*",
+      "http://localhost:5174/*",
+      "http://localhost:5175/*",
+      "https://fft.web.app/*",
+      "http://fft.web.app/*",
+      "https://foodforthought.site/*"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:*/*", "https://supermemory.ai/*", "https://beta.supermemory.ai/*"],
+      "js": ["content.js"]
+    }
+  ]
 }
