@@ -130,7 +130,7 @@ const getBookmarks = async (cursor = "", totalImported = 0, allTweets = []) => {
                     title: `Tweet by a person`,
                     description: tweet.full_text.slice(0, 200),
                     type: "tweet",
-                  }),
+                  }), 
                 }).then(response => {
                   if (!response.ok) {
                     console.error(`Failed to store tweet ${tweet.id}: ${response.statusText}`);
